@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       
+       const checkRightMatch = (list, ind, val, lessVal) =>{
+        // list: array for the number combination
+        // ind: array next location
+        // val: provided value
+        // lessVal: lessened value
+
+        if(lessVal < 0){
+            return;
+        }
+        // print combination if discovered
+
+        if(lessVal == 0){
+            for(let i = 0; i < ind; i++){
+                document.write(list[i] + " ");
+
+                //enforce line break after printing discovered combination
+            }
+            document.write("<br/>");
+            return;
+        }
+
+            //check for previous values in the array
+            let fmrVal = (ind == 0) ? 1 : list[ind - 1];
+
+            // loop through array from ind -1
+            for (let j = fmrVal; j <= val; j++){
+                
+                // j is the array's next value
+
+                list[ind] = j;
+
+                //recursive calling of function with increasing ind value and decreasing
+                //lessVal (lessVal - j)
+
+                checkRightMatch(list, ind + 1, val, lessVal - j);
+            }
+        
+
+
+            
+            
+        }
+    // use CheckRightMatch function to find positive number values that add upto given number
+
+
+    const rightMatch = (n) =>{
+        //array to include the combination which can contain maximum n values
+
+        let list = [];
+
+        //check for all combinations posible
+
+        checkRightMatch(list, 0, n, n);
+    }
+
+    //driver code
+
+    let n = 5;
+    rightMatch(n)
+
+    
+    
+   </script> 
+</body>
+</html>
